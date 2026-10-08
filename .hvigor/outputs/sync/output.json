@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "ohos-module-entry": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "/storage/Users/currentUser/test/folder-sync-tool/entry/build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "/storage/Users/currentUser/test/folder-sync-tool/entry/src/main",
+        "RESOURCES_PATH": [
+          "/storage/Users/currentUser/test/folder-sync-tool/entry/src/main/resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/outputs/default",
+          "INTERMEDIA_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates",
+          "JS_ASSETS_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/loader_out/default",
+          "JS_LITE_ASSETS_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/loader_out_lite/default",
+          "RES_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/res/default",
+          "RES_PROFILE_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/res/default/resources/base/profile",
+          "ETS_SUPER_VISUAL_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/cache/default/default@CompileArkTS/esmodule",
+          "JS_SUPER_VISUAL_PATH": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/cache/default/default@CompileJS/jsbundle",
+          "WORKER_LOADER": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/loader/default/loader.json",
+          "MANIFEST_JSON": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/manifest/default",
+          "OUTPUT_METADATA_JSON": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/hap_metadata/default/output_metadata.json",
+          "SOURCE_MAP_DIR": "/storage/Users/currentUser/test/folder-sync-tool/entry/build/default/intermediates/source_map/default"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": false,
+                "files": []
+              }
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default",
+          "runtimeOS": "HarmonyOS"
+        }
+      ]
+    },
+    "BUILD_CACHE_DIR": ""
+  },
+  "ohos-project": {
+    "SELECT_PRODUCT_NAME": "default",
+    "MODULE_BUILD_DIR": "/storage/Users/currentUser/test/folder-sync-tool/build",
+    "BUNDLE_NAME": "com.example.foldersync",
+    "VERSION_CODE": 1000000,
+    "VERSION_NAME": "1.0.0",
+    "BUILD_PATH": {
+      "OUTPUT_PATH": "/storage/Users/currentUser/test/folder-sync-tool/build/outputs/default"
+    },
+    "MODULES": [
+      {
+        "name": "entry",
+        "srcPath": "/storage/Users/currentUser/test/folder-sync-tool/entry",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ],
+        "belongProjectPath": "/storage/Users/currentUser/test/folder-sync-tool"
+      }
+    ],
+    "PROFILE_OPT": {
+      "app": {
+        "signingConfigs": [
+          {
+            "name": "default",
+            "material": {
+              "storePassword": "00000020A3F96971DEA5B672FE2081DCB198F91EB0717A6ED39AEE121749535927DA11337724E6AC9B71ECD85DCCAE16",
+              "certpath": "/storage/Users/currentUser/Documents/ohos/config/default_folder-sync-toolMDcvjaZiamy79B0cnjQ_oHDvOajHGdWrCC2AifDuD-Y.cer",
+              "keyAlias": "debugKey",
+              "keyPassword": "00000020A3F96971DEA5B672FE2081DCB198F91EB0717A6ED39AEE121749535927DA11337724E6AC9B71ECD85DCCAE16",
+              "profile": "/storage/Users/currentUser/Documents/ohos/config/default_folder-sync-toolMDcvjaZiamy79B0cnjQ_oHDvOajHGdWrCC2AifDuD-Y.p7b",
+              "signAlg": "SHA256withECDSA",
+              "storeFile": "/storage/Users/currentUser/Documents/ohos/config/default_folder-sync-toolMDcvjaZiamy79B0cnjQ_oHDvOajHGdWrCC2AifDuD-Y.p12"
+            },
+            "type": "HarmonyOS"
+          }
+        ],
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS"
+          }
+        ],
+        "buildModeSet": [
+          {
+            "name": "debug"
+          },
+          {
+            "name": "release"
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "entry",
+          "srcPath": "./entry",
+          "targets": [
+            {
+              "name": "default",
+              "applyToProducts": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "CONFIG_PROPERTIES": {
+      "enableSignTask": true,
+      "skipNativeIncremental": false,
+      "hvigor.keepDependency": true
+    },
+    "OVERALL_PROJECT_PATHS": [
+      "/storage/Users/currentUser/test/folder-sync-tool"
+    ],
+    "BUILD_CACHE_DIR": ""
+  }
+}

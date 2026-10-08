@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "文件夹同步工具"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "文件夹同步工具主界面"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "文件夹同步"
+    },
+    {
+      "name": "media_read_reason",
+      "value": "读取文件夹内容以进行同步"
+    },
+    {
+      "name": "media_write_reason",
+      "value": "写入文件到目标文件夹"
+    },
+    {
+      "name": "storage_read_reason",
+      "value": "读取用户存储中的文件夹以进行同步"
+    },
+    {
+      "name": "storage_write_reason",
+      "value": "写入文件到用户存储中的目标文件夹"
+    },
+    {
+      "name": "bluetooth_reason",
+      "value": "检测移动硬盘连接"
+    }
+  ]
+}
