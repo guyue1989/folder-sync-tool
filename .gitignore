@@ -13,6 +13,9 @@
 *.jks
 *.keystore
 
+# 包含签名配置的构建文件
+build-profile.json5
+
 # 系统隐藏文件
 .DS_Store
 *.log
