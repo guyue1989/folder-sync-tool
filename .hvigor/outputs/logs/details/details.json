@@ -20,6 +20,9 @@
         ],
         "PACKAGE_JSON": [],
         "MODULE_TYPE": "entry",
+        "INCREMENTAL_TASKS": {
+          "COMPILE_ARKTS": true
+        },
         "IS_INCREMENTAL_MODULE": true
       }
     ],
@@ -37,21 +40,23 @@
     "BUILD_ANALYSIS_MODE": "normal",
     "TASK_TIME": {
       "923fe53966c6cd9343e11af776cd4b05be315ea4b200b02e4d5dfb0f929b73bf": {
-        "PreBuild": 161572657,
-        "CreateModuleInfo": 1710312,
-        "ConfigureCmake": 307813,
-        "PreCheckSyscap": 434063,
-        "GeneratePkgContextInfo": 11490156,
-        "ProcessIntegratedHsp": 1326719,
-        "BuildNativeWithCmake": 330313,
-        "SyscapTransform": 2691875,
-        "ProcessStartupConfig": 1728750,
-        "BuildNativeWithNinja": 775000,
-        "BuildJS": 2253281,
-        "ProcessCompiledResources": 877656,
-        "PackingCheck": 8745313,
-        "CollectDebugSymbol": 1207031,
-        "assembleHap": 705000
+        "CreateModuleInfo": 1938594,
+        "ConfigureCmake": 397500,
+        "PreCheckSyscap": 548907,
+        "GeneratePkgContextInfo": 5676250,
+        "ProcessIntegratedHsp": 1910156,
+        "BuildNativeWithCmake": 615156,
+        "SyscapTransform": 4911563,
+        "ProcessStartupConfig": 1882187,
+        "BuildNativeWithNinja": 1206250,
+        "BuildJS": 2458282,
+        "CompileArkTS": 3351762656,
+        "ProcessCompiledResources": 886250,
+        "PackageHap": 534969063,
+        "PackingCheck": 3739375,
+        "SignHap": 211423594,
+        "CollectDebugSymbol": 704687,
+        "assembleHap": 229531
       }
     },
     "CUSTOM_TASK_TIME": {},
@@ -64,7 +69,7 @@
       "ENABLE_CPP_FUNCTION_LEVEL_INCREMENTAL": false
     },
     "CONFIG_PROPERTIES": {},
-    "BUILD_ID": "202610102213215230",
-    "TOTAL_TIME": 1942928125
+    "TOTAL_TIME": 4425841406,
+    "BUILD_ID": "202610140647231840"
   }
 }

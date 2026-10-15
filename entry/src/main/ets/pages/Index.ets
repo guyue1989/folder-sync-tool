@@ -1,5 +1,6 @@
 import { FileSyncService, SyncProgress, SyncResult, SyncMode, SyncDirection, CompareResult, FileInfo } from '../service/FileSyncService';
 import { SyncTaskManager, SyncTask, SyncLog, NewLogInput } from '../service/SyncTaskManager';
+import { UriPermission } from '../service/UriPermission';
 import { fileIo, picker } from '@kit.CoreFileKit';
 import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
@@ -57,11 +58,34 @@ struct Index {
   private prefsStore: preferences.Preferences | null = null;
 
   async aboutToAppear(): Promise<void> {
+    await this.activatePersistedUri();
     await this.taskManager.init(this.context);
     this.tasks = this.taskManager.getTasks();
     this.loadStandardDirectories();
     await this.loadSettings();
     this.isInitialized = true;
+  }
+
+  // A persisted grant is still unusable until it is reactivated into memory on every start.
+  // Activate the stored source/target URIs before loadSettings probes accessibility.
+  private async activatePersistedUri(): Promise<void> {
+    try {
+      const store = await preferences.getPreferences(this.context, 'sync_settings');
+      const savedSourceUri = await store.get('sourcePathUri', '') as string;
+      const savedTargetUri = await store.get('targetPathUri', '') as string;
+      const uris: string[] = [];
+      if (UriPermission.isUri(savedSourceUri)) {
+        uris.push(savedSourceUri);
+      }
+      if (UriPermission.isUri(savedTargetUri) && uris.indexOf(savedTargetUri) < 0) {
+        uris.push(savedTargetUri);
+      }
+      if (uris.length > 0) {
+        await UriPermission.activate(uris);
+      }
+    } catch (e) {
+      console.error(`Failed to activate URI permission: ${JSON.stringify(e)}`);
+    }
   }
 
   async aboutToDisappear(): Promise<void> {
@@ -1350,6 +1374,13 @@ struct Index {
         this.sourcePathUri = uri;
         console.log(`Source: picker returned URI: ${uri}`);
 
+        // Persist immediately: the picker grant is temporary and would be dropped if we waited
+        // for a later confirm step. READ and WRITE must both be persisted.
+        const persistErr = await UriPermission.persist(uri);
+        if (persistErr !== '') {
+          console.error(`Source: persistPermission failed: ${persistErr}`);
+        }
+
         const plainPath = this.convertUriToPath(uri);
         this.sourcePath = plainPath;
         this.sourcePermissionLost = false;
@@ -1373,6 +1404,13 @@ struct Index {
         const uri = fileUris[0];
         this.targetPathUri = uri;
         console.log(`Target: picker returned URI: ${uri}`);
+
+        // Persist immediately: the picker grant is temporary and would be dropped if we waited
+        // for a later confirm step. READ and WRITE must both be persisted.
+        const persistErr = await UriPermission.persist(uri);
+        if (persistErr !== '') {
+          console.error(`Target: persistPermission failed: ${persistErr}`);
+        }
 
         const plainPath = this.convertUriToPath(uri);
         this.targetPath = plainPath;
@@ -1417,9 +1455,8 @@ struct Index {
     try {
       const entries = fileIo.listFileSync(path);
       console.info(`checkDirectoryListable: ${path} -> ${entries.length} entries`);
-      if (entries.length === 0) {
-        return false;
-      }
+      // Listing succeeds => the grant is live. An empty folder is legitimate and must not be
+      // treated as lost permission.
       return true;
     } catch (e) {
       console.error(`checkDirectoryListable: listFileSync failed for ${path}: ${JSON.stringify(e)}`);

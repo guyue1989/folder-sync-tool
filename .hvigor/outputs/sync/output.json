@@ -69,7 +69,7 @@
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
     "MODULE_BUILD_DIR": "/storage/Users/currentUser/test/folder-sync-tool/build",
-    "BUNDLE_NAME": "com.example.foldersync",
+    "BUNDLE_NAME": "com.niangao.foldersync",
     "VERSION_CODE": 1000000,
     "VERSION_NAME": "1.0.0",
     "BUILD_PATH": {
@@ -96,10 +96,10 @@
           {
             "name": "default",
             "material": {
-              "storePassword": "00000020A3F96971DEA5B672FE2081DCB198F91EB0717A6ED39AEE121749535927DA11337724E6AC9B71ECD85DCCAE16",
+              "storePassword": "00000020506D6246936973FAAECAC38ADB188C6F57F5918E21FF3E3BA08B312945A6B8A6CBD63A4CE96063467A86B20B",
               "certpath": "/storage/Users/currentUser/Documents/ohos/config/default_folder-sync-toolMDcvjaZiamy79B0cnjQ_oHDvOajHGdWrCC2AifDuD-Y.cer",
               "keyAlias": "debugKey",
-              "keyPassword": "00000020A3F96971DEA5B672FE2081DCB198F91EB0717A6ED39AEE121749535927DA11337724E6AC9B71ECD85DCCAE16",
+              "keyPassword": "00000020506D6246936973FAAECAC38ADB188C6F57F5918E21FF3E3BA08B312945A6B8A6CBD63A4CE96063467A86B20B",
               "profile": "/storage/Users/currentUser/Documents/ohos/config/default_folder-sync-toolMDcvjaZiamy79B0cnjQ_oHDvOajHGdWrCC2AifDuD-Y.p7b",
               "signAlg": "SHA256withECDSA",
               "storeFile": "/storage/Users/currentUser/Documents/ohos/config/default_folder-sync-toolMDcvjaZiamy79B0cnjQ_oHDvOajHGdWrCC2AifDuD-Y.p12"
@@ -111,7 +111,7 @@
           {
             "name": "default",
             "signingConfig": "default",
-            "compatibleSdkVersion": "5.0.0(12)",
+            "compatibleSdkVersion": "6.1.0(23)",
             "runtimeOS": "HarmonyOS"
           }
         ],

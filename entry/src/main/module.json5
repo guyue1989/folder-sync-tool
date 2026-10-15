@@ -22,7 +22,8 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
-        "backgroundModes": ["dataTransfer", "location"],
+        "launchType": "singleton",
+        "backgroundModes": ["taskKeeping", "dataTransfer", "location"],
         "skills": [
           {
             "entities": [
@@ -35,9 +36,25 @@
         ]
       }
     ],
+    "extensionAbilities": [
+      {
+        "name": "TrayPanelAbility",
+        "srcEntry": "./ets/statusbar/TrayPanelAbility.ets",
+        "description": "$string:module_desc",
+        "icon": "$media:layered_image",
+        "type": "statusBarView",
+        "exported": true
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+      },
+      {
+        "name": "ohos.permission.PREPARE_APP_TERMINATE"
+      },
+      {
+        "name": "ohos.permission.FILE_ACCESS_PERSIST"
       }
     ]
   }

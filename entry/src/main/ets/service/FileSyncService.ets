@@ -30,7 +30,7 @@ export interface SyncProgress {
 
 export interface CompareResult {
   toCopy: FileInfo[];
-  toDelete: string[];
+  toDelete: FileInfo[];
   toUpdate: FileInfo[];
 }
 
@@ -267,7 +267,7 @@ export class FileSyncService {
       }
       const tf = targetFiles[i];
       if (!sourceMap.has(tf.relativePath)) {
-        result.toDelete.push(tf.path);
+        result.toDelete.push(tf);
       }
     }
 
@@ -516,23 +516,26 @@ export class FileSyncService {
       }
 
       if (deleteExtra) {
+        // unlinkSync cannot remove a directory (fails with 13900019 "Is a directory"), so split the
+        // extras: remove files first, then directories deepest-first so each is empty by the time
+        // rmdirSync reaches it.
+        const deleteFiles: FileInfo[] = [];
+        const deleteDirs: FileInfo[] = [];
         for (let i = 0; i < toDelete.length; i++) {
-          if (this.isCancelled) break;
-          const path = toDelete[i];
-          try {
-            fileIo.unlinkSync(path);
-          } catch (e) {
-            if (this.isUri(path)) {
-              const plainPath = this.uriToPlainPath(path);
-              try {
-                fileIo.unlinkSync(plainPath);
-              } catch (e2) {
-                result.errors.push(`Failed to delete ${path}: ${JSON.stringify(e2)}`);
-              }
-            } else {
-              result.errors.push(`Failed to delete ${path}: ${JSON.stringify(e)}`);
-            }
+          if (toDelete[i].isDirectory) {
+            deleteDirs.push(toDelete[i]);
+          } else {
+            deleteFiles.push(toDelete[i]);
           }
+        }
+        for (let i = 0; i < deleteFiles.length; i++) {
+          if (this.isCancelled) break;
+          this.removeEntry(deleteFiles[i].path, false, result);
+        }
+        deleteDirs.sort((a: FileInfo, b: FileInfo): number => b.path.length - a.path.length);
+        for (let i = 0; i < deleteDirs.length; i++) {
+          if (this.isCancelled) break;
+          this.removeEntry(deleteDirs[i].path, true, result);
         }
       } else {
         result.skippedFiles = toDelete.length;
@@ -544,6 +547,33 @@ export class FileSyncService {
     }
 
     return result;
+  }
+
+  // unlinkSync only removes files; rmdirSync only removes empty directories. Callers must delete the
+  // files inside a directory before the directory itself, deepest-first.
+  private removeEntry(path: string, isDirectory: boolean, result: SyncResult): void {
+    try {
+      if (isDirectory) {
+        fileIo.rmdirSync(path);
+      } else {
+        fileIo.unlinkSync(path);
+      }
+    } catch (e) {
+      if (this.isUri(path)) {
+        const plainPath = this.uriToPlainPath(path);
+        try {
+          if (isDirectory) {
+            fileIo.rmdirSync(plainPath);
+          } else {
+            fileIo.unlinkSync(plainPath);
+          }
+        } catch (e2) {
+          result.errors.push(`Failed to delete ${path}: ${JSON.stringify(e2)}`);
+        }
+      } else {
+        result.errors.push(`Failed to delete ${path}: ${JSON.stringify(e)}`);
+      }
+    }
   }
 
   async getDirectorySize(dirPath: string): Promise<number> {
