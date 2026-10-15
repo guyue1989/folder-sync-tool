@@ -2,7 +2,7 @@
 
 一款基于 HarmonyOS NEXT 的文件夹同步应用，支持增量/全量同步、双向同步、自动定时同步，并可关闭到状态栏后台常驻运行，适用于手机、平板和 MateBook（2in1）等设备。
 
-- 包名：`com.niangao.foldersync`
+
 
 ## 功能特性
 
