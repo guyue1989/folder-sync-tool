@@ -70,8 +70,8 @@
     "SELECT_PRODUCT_NAME": "default",
     "MODULE_BUILD_DIR": "/storage/Users/currentUser/test/folder-sync-tool/build",
     "BUNDLE_NAME": "com.niangao.foldersync",
-    "VERSION_CODE": 1000000,
-    "VERSION_NAME": "1.0.0",
+    "VERSION_CODE": 1000001,
+    "VERSION_NAME": "1.0.1",
     "BUILD_PATH": {
       "OUTPUT_PATH": "/storage/Users/currentUser/test/folder-sync-tool/build/outputs/default"
     },
