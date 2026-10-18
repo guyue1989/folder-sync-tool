@@ -1,0 +1,33 @@
+# 鸿蒙编译产生的文件夹
+**/build/
+**/oh_modules/
+**/.preview/
+.hvigor/
+**/.sync/
+
+# 签名文件（绝对绝对不能传！）
+*.p12
+*.p7b
+*.cer
+*.csr
+*.jks
+*.keystore
+signdata.json
+debug-signing-config.json
+release-signing-config.json
+
+# 包含签名配置的构建文件
+build-profile.json5
+
+# 系统隐藏文件
+.DS_Store
+*.log
+
+
+.hvigor/cache/
+.hvigor/outputs/
+agconnect-services.json
+
+.hvigor/
+oh_modules/
+.local/
